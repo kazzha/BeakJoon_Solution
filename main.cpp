@@ -1,11 +1,17 @@
 #include <iostream>
+#include <string>
 
 int main()
 {
-    //1008번. 절대 오차와 상대 오차
-
-    double x{}, y{};
-    std::cin >> x >> y;
-    std::cout.precision(10);
-    std::cout << x / y;
+	int year{};
+	std::cin >> year;
+	
+	if ((year % 4) == 0) {
+		if (year % 100 != 0 || year % 400 == 0) {
+			std::cout << 1;
+		}
+		else { std::cout << 0; }
+	}
+	else { std::cout << 0; }
 }
+
