@@ -1,23 +1,31 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
 
 int main()
 {
-	vector<int> A{};
-	vector<int> B{};
+	int N{}, M{}, s{}, k{}, l{};
 
-	int i{}, a{}, b{};
+	cin >> N >> M;
 
-	while (cin >> a >> b)
+	vector<int> basket(N);
+
+	for (int j = 0; j < M; j++) {
+		cin >> s >> k >> l;
+		for (int i = 0; i <= k-s ; i++)
+		{
+			basket[s + i -1] = l;
+		}
+	}
+
+	for (auto e : basket)
 	{
-		A.push_back(a);
-		B.push_back(b);
-
-		cout << A[i] + B[i] << endl;
-		i++;
+		cout << e << " ";
 	}
 }
+	 
+
