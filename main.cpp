@@ -1,22 +1,23 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
+
 int main()
 {
-	int h{}, m{}, timer{};
+	vector<int> A{};
+	vector<int> B{};
 
-	cin >> h >> m;
-	cin >> timer;
+	int i{}, a{}, b{};
 
-	h += (m + timer) / 60;
-
-	if (h > 23)
+	while (cin >> a >> b)
 	{
-		cout << h - 24 << " " << (m + timer) % 60;
-	}
-	else {
-		cout << h << " " << (m + timer) % 60;
+		A.push_back(a);
+		B.push_back(b);
+
+		cout << A[i] + B[i] << endl;
+		i++;
 	}
 }
