@@ -8,24 +8,23 @@ using namespace std;
 
 int main()
 {
-	int N{}, M{}, s{}, k{}, l{};
+	int N{}, M{}, k{}, j{};
 
 	cin >> N >> M;
 
 	vector<int> basket(N);
 
-	for (int j = 0; j < M; j++) {
-		cin >> s >> k >> l;
-		for (int i = 0; i <= k-s ; i++)
-		{
-			basket[s + i -1] = l;
-		}
+	for (int i = 0; i < N; i++)
+	{
+		basket[i] = i + 1;
 	}
-
+	for (int i = 0; i < M; i++)
+	{
+		cin >> k >> j;
+		reverse(basket.begin() + k - 1, basket.begin() + j);
+	}
 	for (auto e : basket)
 	{
 		cout << e << " ";
 	}
 }
-	 
-
