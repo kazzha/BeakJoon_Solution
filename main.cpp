@@ -8,23 +8,15 @@ using namespace std;
 
 int main()
 {
-	int N{}, M{}, k{}, j{};
-
-	cin >> N >> M;
-
-	vector<int> basket(N);
-
+	int N{}, sum{};
+	cin >> N;
+	char* pC = new char[N];
 	for (int i = 0; i < N; i++)
 	{
-		basket[i] = i + 1;
+		cin >> pC[i];
+		sum += pC[i] - '0';
 	}
-	for (int i = 0; i < M; i++)
-	{
-		cin >> k >> j;
-		reverse(basket.begin() + k - 1, basket.begin() + j);
-	}
-	for (auto e : basket)
-	{
-		cout << e << " ";
-	}
+	
+	cout << sum;
+	delete[] pC;
 }
