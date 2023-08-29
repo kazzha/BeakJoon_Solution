@@ -5,18 +5,11 @@
 
 using namespace std;
 
-
 int main()
 {
-	int N{}, sum{};
-	cin >> N;
-	char* pC = new char[N];
-	for (int i = 0; i < N; i++)
+	string str;
+	while (getline(cin, str))
 	{
-		cin >> pC[i];
-		sum += pC[i] - '0';
+		cout << str << endl;
 	}
-	
-	cout << sum;
-	delete[] pC;
 }
