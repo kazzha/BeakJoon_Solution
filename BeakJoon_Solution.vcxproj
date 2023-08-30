@@ -131,6 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="memo.h" />
+    <ClInclude Include="크로아티아 알파벳.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

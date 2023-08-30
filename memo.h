@@ -66,8 +66,15 @@ void Practice()
 	// 10811번
 	std::reverse(시작, 끝) : <algorithm> 헤더 필요.시작부터 끝까지 요소를 역순으로 만들어줌
 	시작과 끝에는 iterator를 넣어야 하기 때문에 인덱스를 쓰려면
-		reverse(basket.begin() + k - 1, basket.begin() + j); 와 같이 써야한다.
-	-string, vector 모두 가능
-    // 2908번
-	 std::stoi(문자열) : 문자열의 각 char를 모아서 하나의 int로 만들어줌
+	reverse(basket.begin() + k - 1, basket.begin() + j); 와 같이 써야한다.
+	- string, vector 모두 가능
+
+	// 2908번
+	std::stoi(문자열) : 문자열의 각 char를 모아서 하나의 int로 만들어줌
+
+	// 2941번
+	fine("") 함수의 반환값은 인덱스인데, size_t 타입이다.
+	size_t found = str.find(" " or 패턴); 이렇게 할 수 있다.
+
+	ㅜ 
 }
