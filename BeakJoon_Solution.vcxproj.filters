@@ -26,5 +26,8 @@
     <ClInclude Include="크로아티아 알파벳.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="너의 평점은.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

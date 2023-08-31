@@ -72,9 +72,25 @@ void Practice()
 	// 2908번
 	std::stoi(문자열) : 문자열의 각 char를 모아서 하나의 int로 만들어줌
 
-	// 2941번
+	// 2941번 -
 	fine("") 함수의 반환값은 인덱스인데, size_t 타입이다.
 	size_t found = str.find(" " or 패턴); 이렇게 할 수 있다.
+    
+	// 1157번 - 같은 값을 찾고 싶을때, 반복자를 저장하는 법
 
-	ㅜ 
+	int resultValue = *max_element(alpha.begin(), alpha.end());
+
+	vector<vector<int>::iterator> result;
+
+	for (auto it = alpha.begin(); it != alpha.end(); it++)
+	{
+		if (*it == resultValue)
+		{
+			result.push_back(it);
+		}
+	}
+
+	이 반복자로 인덱스 뽑아 내는 법
+    size_t index = distance(alpha.begin(), result[0]);
+	
 }
