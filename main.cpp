@@ -8,13 +8,21 @@ using namespace std;
  
 int main()
 {
-	int N{}, oneWall{1}, dotCount{4};
+	int N{}, roof{ 1 }, cnt{ 1 };
 
 	cin >> N;
-	
-	oneWall = oneWall + pow(2,N);
-    dotCount = oneWall * oneWall;
-	
 
-	cout << dotCount;
+	while (true)
+	{
+		if (N - roof <= 0) { break; }
+
+		N -= roof;
+
+		roof = 6 * cnt;
+
+		cnt++; 
+	}
+
+	cout << cnt;
+	
 }
