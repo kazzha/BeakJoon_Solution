@@ -93,4 +93,15 @@ void Practice()
 	이 반복자로 인덱스 뽑아 내는 법
     size_t index = distance(alpha.begin(), result[0]);
 	
+	// 2869번 - 달팽이 시간 초과
+	// 나눈 값으로 바로 출력하면 시간이 적게 걸린다. (반복문x)
+
+	int A{}, B{}, V{}, Day{};
+
+	cin >> A >> B >> V;
+
+	V -= A;
+
+	if (V % (A - B) == 0) cout << (V / (A - B)) + 1;
+	else cout << V / (A - B) + 2;
 }

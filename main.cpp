@@ -8,21 +8,31 @@ using namespace std;
  
 int main()
 {
-	int N{}, roof{ 1 }, cnt{ 1 };
+	vector<int> div;
+	int N{}, sum{};
 
 	cin >> N;
 
-	while (true)
-	{
-		if (N - roof <= 0) { break; }
+	while (N != -1) {
+		for (int i = 1; i < N; i++)
+		{
+			if ((N % i) == 0) { div.push_back(i); sum += i; }
 
-		N -= roof;
+		}
+		if (sum != N) { cout << N << " is NOT perfect." << endl; }
+		else if (sum == N) {
+			cout << N << " = ";
+			for (int i = 0; i < div.size(); i++)
+			{
+				cout << div[i];
+				if (i != (div.size() - 1)) cout << " + ";
+			}
+			cout << endl;
+		}
 
-		roof = 6 * cnt;
-
-		cnt++; 
+		div.clear();
+		sum = 0;
+		cin >> N;
 	}
-
-	cout << cnt;
 	
 }
