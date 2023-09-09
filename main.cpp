@@ -5,18 +5,19 @@
 
 using namespace std;
 
-bool f(int a1, int a0, int c, int n0)
-{
-	
-    if (c-a1 <0 || (a1 * n0) + a0 > c * n0) { return false; }
-	
-	return true;
-}
-
 int main()
 {
-	int a1{}, a0{}, c{}, n0{};
+	int a{}, b{}, c{}, d{}, e{}, f{};
 
-	cin >> a1 >> a0 >> c >> n0;
-	cout << f(a1, a0, c, n0);
+	cin >> a >> b >> c >> d >> e >> f;
+
+	for(int x=-999; x<1000; x++)
+	{
+		for (int y = -999; y < 1000; y++) {
+			if ((a * x + b * y) == c && (d * x + e * y) == f)
+			{
+				cout << x << " " << y;
+			}
+		}
+	}
 }
