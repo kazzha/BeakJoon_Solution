@@ -7,36 +7,33 @@ using namespace std;
 
 int main()
 {
-	string number;
+	vector<int> num(5);
+	int ave{}, sum{};
 
-	cin >> number;
-
-	int num = stoi(number);
-	int create{};
-
-	vector<int> value(number.size());
-	for (int i = 0; i < number.size(); i++)
+	for (int i = 0; i < 5; i++)
 	{
-		value[i] = static_cast<int>(number[i]-'0');
+		cin >> num[i];
+		sum += num[i];
 	}
-	for (int i = 1; i < num; i++)
+
+	sum /= 5;
+
+	int temp{};
+
+	for (int i = 0; i < 4; i++)
 	{
-		create = i;
-		for (int j = 0; j < value.size(); j++)
+		for (int j = i + 1; j < 5; j++)
 		{
-			create += value[j];
-		}
-		if (create == num)
-		{
-			cout << i;
-			break;
-		}
-		if (i == num - 1)
-		{
-			cout << 0;
+			if (num[i] > num[j])
+			{
+				temp = num[i];
+				num[i] = num[j];
+				num[j] = temp;
+			}
 		}
 	}
-	
 
-	
+	cout << sum << endl << num[2];
+
+
 }
