@@ -7,33 +7,17 @@ using namespace std;
 
 int main()
 {
-	vector<int> num(5);
-	int ave{}, sum{};
+	int N{}, k{};
 
-	for (int i = 0; i < 5; i++)
+	cin >> N >> k;
+	vector<int> score(N);
+
+	for (int i = 0; i < N; i++)
 	{
-		cin >> num[i];
-		sum += num[i];
+		cin >> score[i];
 	}
 
-	sum /= 5;
+	sort(score.begin(), score.end(), greater<int>());
 
-	int temp{};
-
-	for (int i = 0; i < 4; i++)
-	{
-		for (int j = i + 1; j < 5; j++)
-		{
-			if (num[i] > num[j])
-			{
-				temp = num[i];
-				num[i] = num[j];
-				num[j] = temp;
-			}
-		}
-	}
-
-	cout << sum << endl << num[2];
-
-
+	cout << score[k-1];
 }
