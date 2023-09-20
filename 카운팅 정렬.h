@@ -1,7 +1,7 @@
+#pragma once
+
 #include <iostream>
-#include <string>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
@@ -11,7 +11,7 @@ int main()
 	std::cin.tie(nullptr);
 	int N{}, max{ 1 }, num{};
 	cin >> N;
-	
+
 	vector<int> accum(10001);
 
 	for (int i = 0; i < N; i++)
@@ -26,7 +26,7 @@ int main()
 	}
 
 
-	for (int i = 1; i < max+1; i++)
+	for (int i = 1; i < max + 1; i++)
 	{
 		for (int j = 0; j < accum[i]; j++)
 		{
@@ -36,5 +36,5 @@ int main()
 			}
 		}
 	}
-	
+
 }

@@ -140,6 +140,7 @@
     <ClInclude Include="브루트포스_영화감독 숌.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="카운팅 정렬.h" />
     <ClInclude Include="크로아티아 알파벳.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
