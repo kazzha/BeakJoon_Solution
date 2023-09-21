@@ -1,7 +1,10 @@
+#pragma once
+// 1181번
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <utility>
+
 
 using namespace std;
 
@@ -34,7 +37,7 @@ int main()
     for (int i = 0; i < N; i++)
     {
         cout << str[i] << '\n';
-        while (i < N - 1 && str[i] == str[i + 1])
+        while (i < N - 1 && str[i] == str[i + 1]) // 중복된 것은 출력 넘어감
         {
             i++;
         }
