@@ -1,40 +1,31 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include <algorithm>
+#include <utility>
 
 using namespace std;
 
 int main()
 {
-	std::ios_base::sync_with_stdio(false);
-	std::cin.tie(nullptr);
-	int N{}, max{ 1 }, num{};
-	cin >> N;
-	
-	vector<int> accum(10001);
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int N{};
 
-	for (int i = 0; i < N; i++)
-	{
-		cin >> num;
-		accum[num]++;
+    cin >> N;
 
-		if (num > max)
-		{
-			max = num;
-		}
-	}
+    vector<pair<int, int>> points(N);
 
+    for (int i = 0; i < N; i++)
+    {
+        cin >> points[i].second >> points[i].first;
+    }
 
-	for (int i = 1; i < max+1; i++)
-	{
-		for (int j = 0; j < accum[i]; j++)
-		{
-			if (accum[i] != 0)
-			{
-				cout << i << '\n';
-			}
-		}
-	}
-	
+    sort(points.begin(), points.end());
+
+    for (int i = 0; i < N; i++)
+    {
+        cout << points[i].second << " " << points[i].first << '\n';
+    }
+
+    return 0;
 }
