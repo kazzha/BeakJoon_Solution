@@ -15,7 +15,7 @@ int main()
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
-    int N{};
+    int N{}, temp{1100000000};
 
     cin >> N;
 
@@ -30,16 +30,18 @@ int main()
 
     for (int i = 0; i < N; i++)
     {
+        temp = points[i];
         for (int j = 0; j < N; j++)
         {
-            if (points[i] > points[j])
+            if (points[j] != temp && points[i] > points[j])
             {
                 score[i]++;
+                temp = points[j];
             }
         }
         cout << score[i] << " ";
     }
 
-    
+    이걸 카운팅 정렬로 바꾸기
 
 }
