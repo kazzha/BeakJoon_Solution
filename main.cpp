@@ -1,43 +1,45 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <utility>
 
 using namespace std;
 
-bool CompareS(const string& a, const string& b)
+bool CompareI(const pair<int, string>& a, const pair<int, string>& b)
 {
-    if (a.size() == b.size())
-    {
-        return a < b;
-    }
-    return a.size() < b.size();
+
+    return a.first < b.first;
 }
+
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
     int N{};
 
     cin >> N;
 
-    vector<string> str(N);
+    vector<int> points(N);
+    vector<int> score(N);
 
     for (int i = 0; i < N; i++)
     {
-        cin >> str[i];
+        cin >> points[i];
+       
     }
 
-    sort(str.begin(), str.end(), CompareS);
-
     for (int i = 0; i < N; i++)
     {
-        cout << str[i] << '\n';
-        while (i < N - 1 && str[i] == str[i + 1])
+        for (int j = 0; j < N; j++)
         {
-            i++;
+            if (points[i] > points[j])
+            {
+                score[i]++;
+            }
         }
+        cout << score[i] << " ";
     }
+
+    
 
 }

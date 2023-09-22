@@ -12,7 +12,7 @@ bool CompareS(const string& a, const string& b)
 {
     if (a.size() == b.size())
     {
-        return a < b;
+        return a < b; // 길이가 같으면 사전순
     }
     return a.size() < b.size();
 }
