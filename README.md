@@ -11,3 +11,4 @@
 3. 벌집[<roof 구조, 재귀함수로 해보기>](https://github.com/kazzha/BeakJoon_Solution/blob/698b77fa80bbbb53fe85e27e72aef1144afcf21e/%EB%B2%8C%EC%A7%91.cpp)
 4. 브루트포스
 5. 카운팅 정렬[<공간 복잡도 최적화>](https://github.com/kazzha/BeakJoon_Solution/blob/master/%EC%B9%B4%EC%9A%B4%ED%8C%85%20%EC%A0%95%EB%A0%AC.h)
+6. 람다 함수 사용법, 출력 넘어가기[<while문>](https://github.com/kazzha/BeakJoon_Solution/blob/a0942eef68a2c4df4f9ff7be0386e18ceb6cda68/%EB%8B%A8%EC%96%B4%EC%A0%95%EB%A0%AC_%EB%9E%8C%EB%8B%A4%20%ED%95%A8%EC%88%98.h)
