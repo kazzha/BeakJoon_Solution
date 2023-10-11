@@ -41,5 +41,8 @@
     <ClInclude Include="단어정렬_람다 함수.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="좌표압축.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
