@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <string>
+#include <map>
 
 using namespace std;
 
@@ -15,19 +15,32 @@ bool CompareI(const pair<int, string>& a, const pair<int, string>& b)
 
 int main()
 {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    
-    int C{}, I{}, num{};
+    int num{};
+    cin >> num;
+    string name, checking;
 
-    cin >> C >> I;
-    vector<string> collect(C);
+    map<string, bool> company;
 
-    for (int i = 0; i < C; i++)
+    for (int i = 0; i < num; i++)
     {
-        cin >> collect[i];
+        cin >> name >> checking;
+        if (checking == "enter")
+        {
+            company[name] = true;
+        }
+        else if (checking == "leave")
+        {
+            company[name] = false;
+        }
     }
 
+    for (auto it = company.rbegin(); it != company.rend(); ++it)
+    {
+        if (it->second)
+        {
+            cout << it->first << '\n';
+        }
+    }
 
 }
 
