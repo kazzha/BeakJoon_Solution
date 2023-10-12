@@ -15,33 +15,32 @@ bool CompareI(const pair<int, string>& a, const pair<int, string>& b)
 
 int main()
 {
+    int N{}, M{};
     int num{};
-    cin >> num;
-    string name, checking;
+    string checking{};
+    vector<string> name;
+    map<string, int> poketmon;
+    map<int, string> poketmonR;
 
-    map<string, bool> company;
+    cin >> N >> M;
 
-    for (int i = 0; i < num; i++)
+    for (int i = 0; i < N; i++)
     {
-        cin >> name >> checking;
-        if (checking == "enter")
-        {
-            company[name] = true;
-        }
-        else if (checking == "leave")
-        {
-            company[name] = false;
-        }
+        cin >> name[i];
     }
 
-    for (auto it = company.rbegin(); it != company.rend(); ++it)
+    sort(name.begin(), name.end());
+
+    for (int i = 0; i < N; i++)
     {
-        if (it->second)
-        {
-            cout << it->first << '\n';
-        }
+        poketmon[name[i]] = i + 1;
+        poketmonR[i + 1] = name[i];
     }
 
+    for (int j = 0; j < M; j++)
+    {
+        cin >> num || checking;
+    }
 }
 
 
