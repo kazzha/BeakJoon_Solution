@@ -1,7 +1,6 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
-#include <map>
+#include <stack>
 
 using namespace std;
 
@@ -15,41 +14,43 @@ bool CompareI(const pair<int, string>& a, const pair<int, string>& b)
 
 int main()
 {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    
-    int N{}, M{}, count{};
-    string name;
-    
-    cin >> N >> M;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-    map<string, bool> hearlook;
-
-    for (int i = 0; i < N; i++)
+    int N{}, M{};
+    cin >> N;
+    stack<int> ST;
+    for(int i=0; i<N; i++)
     {
-        cin >> name;
-        hearlook[name] = false;
-    }
-    for (int i = 0; i < M; i++)
-    {
-        cin >> name;
-        if (hearlook.count(name))
+        cin >> M;
+        switch (M)
         {
-            count++;
-            hearlook[name] = true;
+            {
+        case 1:
+            int X{};
+            cin >> X;
+            ST.push(X);
+            break;
+            }
+        case 2:
+            if (ST.empty()) { cout << -1 << '\n'; }
+            else {  cout << ST.top() << '\n'; ST.pop(); }
+            break;
+        case 3:
+            cout << ST.size() << '\n';
+            break;
+        case 4: 
+            if (ST.empty()) { cout << 1 << '\n'; }
+            else { cout << 0 << '\n'; }
+            break;
+        case 5:
+            if (!ST.empty()) { cout << ST.top() << '\n'; }
+            else { cout << -1 << '\n'; }
+        default:
+            break;
         }
     }
-
-    cout << count << '\n';
-
-    for (const auto& entry : hearlook)
-    {
-        if (entry.second)
-        {
-            cout << entry.first << '\n';
-        }
-    }
-
+  
 }
 
 
