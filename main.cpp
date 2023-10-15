@@ -14,43 +14,29 @@ bool CompareI(const pair<int, string>& a, const pair<int, string>& b)
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
+    int K{}, num{}, sum{};
 
-    int N{}, M{};
-    cin >> N;
+    cin >> K;
+
     stack<int> ST;
-    for(int i=0; i<N; i++)
+
+    for (int i = 0; i < K; i++)
     {
-        cin >> M;
-        switch (M)
+        cin >> num;
+        if (num == 0)
         {
-            {
-        case 1:
-            int X{};
-            cin >> X;
-            ST.push(X);
-            break;
-            }
-        case 2:
-            if (ST.empty()) { cout << -1 << '\n'; }
-            else {  cout << ST.top() << '\n'; ST.pop(); }
-            break;
-        case 3:
-            cout << ST.size() << '\n';
-            break;
-        case 4: 
-            if (ST.empty()) { cout << 1 << '\n'; }
-            else { cout << 0 << '\n'; }
-            break;
-        case 5:
-            if (!ST.empty()) { cout << ST.top() << '\n'; }
-            else { cout << -1 << '\n'; }
-        default:
-            break;
+            ST.pop();
         }
+        else { ST.push(num); }
     }
-  
+    
+   while(!ST.empty())
+    {
+        sum += ST.top();
+        ST.pop();
+    }
+
+    cout << sum;
 }
 
 
