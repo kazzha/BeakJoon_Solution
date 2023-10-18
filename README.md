@@ -1,8 +1,5 @@
 # BeakJoon_Solution
 
-[링크 테스트](https://github.com/kazzha/BeakJoon_Solution/blob/master/%ED%8F%B4%EB%8D%94%ED%85%8C%EC%8A%A4%ED%8A%B8/1008.cpp)
-
-
 ## 실버💿
 
 
@@ -12,3 +9,5 @@
 4. 브루트포스
 5. 카운팅 정렬[<공간 복잡도 최적화>](https://github.com/kazzha/BeakJoon_Solution/blob/master/%EC%B9%B4%EC%9A%B4%ED%8C%85%20%EC%A0%95%EB%A0%AC.h)
 6. 람다 함수 사용법, 출력 넘어가기[<while문>](https://github.com/kazzha/BeakJoon_Solution/blob/a0942eef68a2c4df4f9ff7be0386e18ceb6cda68/%EB%8B%A8%EC%96%B4%EC%A0%95%EB%A0%AC_%EB%9E%8C%EB%8B%A4%20%ED%95%A8%EC%88%98.h)
+7. 바이너리서치[<STL 사용법>](https://github.com/kazzha/BeakJoon_Solution/blob/1efcb4505355588e8de9ee43b9ca6b9b67927e88/%EB%B0%94%EC%9D%B4%EB%84%88%EB%A6%AC%20%EC%84%9C%EC%B9%98.h)
+8. 스택으로 짝 맞추는 법[<게임에서 짝 맞출 때 쓸 수 있을 것 같음>](https://github.com/kazzha/BeakJoon_Solution/blob/1efcb4505355588e8de9ee43b9ca6b9b67927e88/%EC%8A%A4%ED%83%9D_%EC%A7%9D%EB%A7%9E%EC%B6%94%EA%B8%B0.h)
