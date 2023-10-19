@@ -1,9 +1,9 @@
 #include <iostream>
 #include <algorithm>
-#include <stack>
+#include <queue>
+#include <vector>
 
 using namespace std;
-
 
 bool CompareI(const pair<int, string>& a, const pair<int, string>& b)
 {
@@ -16,45 +16,41 @@ int main()
 {
     std::ios_base::sync_with_stdio(false); 
     std::cin.tie(nullptr);
-    int T{}, left{}, right{};
-    bool num=true;
-    cin >> T;
+    
+    int N{}, K{}, tmp{};
+    queue<int> yo;
+    vector<int> mem{};
+    cin >> N >> K;
 
-    string checking;
-   
+    for (int i = 1; i <= N; i++)
+    {
+        yo.push(i);
+    }
 
-    for (int i = 0; i < T; i++)
-    { 
-        stack<char> test;
-        cin >> checking;
-        for (int j = 0; j < checking.size(); j++)
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < K - 1; j++)
         {
-            if (checking[j] == '(')
-            {
-                test.push(checking[j]);
-            }
-            else
-            {
-                if (test.empty())
-                {
-                    test.push(checking[j]);
-                    break;
-                }
-                else
-                {
-                    test.pop();
-                }
-            }
+            tmp = yo.front();
+            yo.pop();
+            yo.push(tmp);
         }
-        if (test.empty())
-        {
-            cout << "YES" << '\n';
+        mem.push_back(yo.front());
+        yo.pop();
+    }
+    
+    cout << '<';
+    for (int k = 0; k < N; k++)
+    {
+        if (k != N - 1) {
+            cout << mem[k] << ", ";
         }
         else
         {
-            cout << "NO" << '\n';
+            cout << mem[k] << '>';
         }
     }
+
 }
 
 
