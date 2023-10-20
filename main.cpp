@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
-#include <queue>
-#include <vector>
+#include <deque>
+#include <utility>
 
 using namespace std;
 
@@ -17,40 +17,40 @@ int main()
     std::ios_base::sync_with_stdio(false); 
     std::cin.tie(nullptr);
     
-    int N{}, K{}, tmp{};
-    queue<int> yo;
-    vector<int> mem{};
-    cin >> N >> K;
+    deque<pair<int,int>> deq;
+
+    pair<int, int> P, tmp;
+
+    int N{}, num{}, frontnum{};
+
+    cin >> N;
 
     for (int i = 1; i <= N; i++)
     {
-        yo.push(i);
+        cin >> num;
+        deq.push_back(make_pair(num,i));
     }
 
-    for (int i = 0; i < N; i++)
+    for (int i = 1; i <= N; i++)
     {
-        for (int j = 0; j < K - 1; j++)
-        {
-            tmp = yo.front();
-            yo.pop();
-            yo.push(tmp);
-        }
-        mem.push_back(yo.front());
-        yo.pop();
-    }
-    
-    cout << '<';
-    for (int k = 0; k < N; k++)
-    {
-        if (k != N - 1) {
-            cout << mem[k] << ", ";
+        tmp = deq.front();
+        if (tmp.first > 0) {
+            for (int j = 0; j < tmp.first; j++)
+            {
+                P = deq.front();
+                deq.pop_front();
+                if (j != 0)
+                {
+                    deq.push_back(P);
+                }
+            }
         }
         else
         {
-            cout << mem[k] << '>';
+            // back에서 하면됨! 어차피 -가 head니까
         }
+        cout << tmp.second << ' ';
     }
-
 }
 
 
