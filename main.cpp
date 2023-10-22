@@ -1,7 +1,4 @@
 #include <iostream>
-#include <algorithm>
-#include <deque>
-#include <utility>
 
 using namespace std;
 
@@ -14,43 +11,19 @@ bool CompareI(const pair<int, string>& a, const pair<int, string>& b)
 
 int main()
 {
-    std::ios_base::sync_with_stdio(false); 
+    std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
-    
-    deque<pair<int,int>> deq;
 
-    pair<int, int> P, tmp;
-
-    int N{}, num{}, frontnum{};
+    int N{}, sum{ 1 };
 
     cin >> N;
-
-    for (int i = 1; i <= N; i++)
+    
+    for (int i = 0; i < N; i++)
     {
-        cin >> num;
-        deq.push_back(make_pair(num,i));
+        sum *= 2;
     }
 
-    for (int i = 1; i <= N; i++)
-    {
-        tmp = deq.front();
-        if (tmp.first > 0) {
-            for (int j = 0; j < tmp.first; j++)
-            {
-                P = deq.front();
-                deq.pop_front();
-                if (j != 0)
-                {
-                    deq.push_back(P);
-                }
-            }
-        }
-        else
-        {
-            // back에서 하면됨! 어차피 -가 head니까
-        }
-        cout << tmp.second << ' ';
-    }
+    cout << sum;
 }
 
 
