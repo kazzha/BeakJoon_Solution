@@ -105,3 +105,22 @@ void Practice()
 	if (V % (A - B) == 0) cout << (V / (A - B)) + 1;
 	else cout << V / (A - B) + 2;
 }
+
+// 3273번
+int a[1000001] = {};
+bool occur[2000001];
+int n, x;
+
+int main(void) {
+	int ans = 0;
+	cin >> n;
+	for (int i = 0; i < n; i++) cin >> a[i];
+	cin >> x;
+
+	for (int i = 0; i < n; i++) {
+		if (x - a[i] > 0 && occur[x - a[i]]) ans++; // 빼면 그 배열을 true로 만들어서 그 다음에 
+		// 그 수가 나타나면 바로 정답으로 간주
+		occur[a[i]] = true;
+	}
+	cout << ans;
+}

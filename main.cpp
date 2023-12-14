@@ -1,29 +1,51 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <set>
 
 using namespace std;
-
-bool CompareI(const pair<int, string>& a, const pair<int, string>& b)
-{
-
-    return a.first < b.first;
-}
-
 
 int main()
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
-
-    int N{}, sum{ 1 };
-
-    cin >> N;
     
-    for (int i = 0; i < N; i++)
+    int X{}, N{};
+    cin >> X >> N;
+    vector<int> num(X);
+    set<int> answer;
+
+    for (auto& n : num)
+        cin >> n;
+
+    int start{}, end{ 1 }, sum{}, len{1};
+
+    sum = num[start];
+
+    while (start <= end)
     {
-        sum *= 2;
+        if (sum < N)
+        {
+            sum += num[end];
+            end++; len++;
+        }
+        else
+        {
+            answer.insert(len);
+            sum -= num[start]; len--;
+            start++;
+        }
     }
 
-    cout << sum;
+    if (!answer.empty())
+    {
+        cout << *min_element(answer.begin(), answer.end());
+    }
+    else
+    {
+        cout << 0;
+    }
+
 }
 
 
