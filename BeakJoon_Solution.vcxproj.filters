@@ -56,5 +56,8 @@
     <ClInclude Include="스택으로 순서 꺼내기.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="투포인터.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <set>
 
 using namespace std;
 
@@ -10,42 +9,46 @@ int main()
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     
-    int X{}, N{};
-    cin >> X >> N;
-    vector<int> num(X);
-    set<int> answer;
+    int N{}, M{}, start{};
+    cin >> N >> M;
+    vector<vector<int>> numbers(N, vector<int>(N));
+    vector<vector<int>> sums(N, vector<int>(N));
 
-    for (auto& n : num)
-        cin >> n;
-
-    int start{}, end{ 1 }, sum{}, len{1};
-
-    sum = num[start];
-
-    while (start <= end)
+    for (int i = 0; i < N; i++)
     {
-        if (sum < N)
+        for (int j = 0; j < N; j++)
         {
-            sum += num[end];
-            end++; len++;
-        }
-        else
-        {
-            answer.insert(len);
-            sum -= num[start]; len--;
-            start++;
+            cin >> numbers[i][j];
+            if (j == 0) {
+                sums[i][j] = numbers[i][j];
+            }
+            else
+            {
+                sums[i][j] = sums[i][j - 1] + numbers[i][j];
+            }
         }
     }
+    
+    int x1{}, x2{}, y1{}, y2{}, ans{};
 
-    if (!answer.empty())
+    for (int i = 0; i < M; i++)
     {
-        cout << *min_element(answer.begin(), answer.end());
-    }
-    else
-    {
-        cout << 0;
+        cin >> x1 >> y1 >> x2 >> y2;
+
+        for (int j = x1; j <= x2; j++)
+        {
+            if (y1 - 2 >= 0)
+                ans += sums[j - 1][y2 - 1] - sums[j - 1][y1 - 2];
+
+            else
+                ans += sums[j - 1][y2 - 1];
+        }
+
+        cout << ans << '\n';
+        ans = 0;
     }
 
+    
 }
 
 
