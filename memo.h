@@ -123,4 +123,53 @@ int main(void) {
 		occur[a[i]] = true;
 	}
 	cout << ans;
+
+}
+
+string str;
+cin >> str;
+int num{};
+cin >> num;
+map<char, int> check;
+string littlestr{ "abcdefghijklmnopqrstuvwxyz" };
+for (int i = 0; i < 27; i++)
+{
+	check[str[i]] = 0;
+}
+
+
+for (int i = 0; i < num; i++)
+{
+	char checking; int start{}; int end{};
+	cin >> checking >> start >> end;
+
+}
+
+
+/// <summary>
+/// /////////////////////////////////////////
+/// </summary>
+
+int N{}, M{}, K{};
+cin >> N >> M >> K;
+char BW{};
+
+vector<vector<int>> sumsB(N + 1, vector<int>(M + 1));
+vector<vector<int>> sumsW(N + 1, vector<int>(M + 1));
+
+for (int i = 1; i < N + 1; i++)
+{
+	for (int j = 1; j < M + 1; j++)
+	{
+		cin >> BW;
+
+	}
+}
+
+for (int i = K - 1; i <= N - K; i++)
+{
+	for (int j = K - 1; j <= M - K; j++)
+	{
+
+	}
 }
