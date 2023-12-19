@@ -1,18 +1,24 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <cstring>
+#include <queue>
 
 using namespace std;
 
-int recursion(const char* s, int l, int r, int check) {
-    if (l >= r) { check++; return check; }
-    else if (s[l] != s[r]) {check++; return check;}
-    else { check++;  return recursion(s, l + 1, r - 1, check); }
-}
+vector<int> edges[1001];
+bool dfsCheck[1001];
+bool bfsCheck[1001];
 
-int isPalindrome(const char* s , int checkI) {
-        return recursion(s, 0, strlen(s)-1, checkI);
+void DFS(int start)
+{
+    for (auto now : edges[start])
+    {
+        if (dfsCheck[now]) continue;
+
+        dfsCheck[now] = true;
+        cout << now << ' ';
+        DFS(now);
+    }
 }
 
 int main()
@@ -20,25 +26,47 @@ int main()
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     
-    int count{};
-    
-    cin >> count;
+    int N{}, M{}, R{};
 
-    for (int i = 0; i < count; i++)
+    cin >> N >> M >> R;
+
+    for (int i = 0; i < M; i++)
     {
-        int num{};
-        string input;
-        cin >> input;
-        if(isPalindrome(input.c_str(), num) > (input.size() / 2))
+        int vertex{}, edge{};
+        cin >> vertex >> edge;
+        edges[vertex].push_back(edge);
+        edges[edge].push_back(vertex);
+    }
+
+    for (int i = 1; i <= N; i++)
+    {
+        sort(edges[i].begin(), edges[i].end());
+    }
+
+    dfsCheck[R] = true;
+    cout << R << ' ';
+    DFS(R);
+    
+    queue<int> queue;
+    queue.push(R);
+
+    cout << '\n';
+    while (!queue.empty())
+    {
+        int current_vertex = queue.front();
+        queue.pop();
+
+        if (bfsCheck[current_vertex]) continue;    
+        bfsCheck[current_vertex] = true;
+        cout << current_vertex << ' ';
+        for (auto now : edges[current_vertex])
         {
-            cout << 1 << ' ' << isPalindrome(input.c_str(), num) << '\n';
-        }
-        else
-        {
-            cout << 0 << ' ' << isPalindrome(input.c_str(), num) << '\n';
+            if(!bfsCheck[now])
+            queue.push(now);
         }
     }
-   
+     
+
 }
 
 
