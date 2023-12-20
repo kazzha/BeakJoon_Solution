@@ -2,71 +2,71 @@
 #include <vector>
 #include <algorithm>
 #include <queue>
+#include <string>
 
 using namespace std;
 
-vector<int> edges[1001];
-bool dfsCheck[1001];
-bool bfsCheck[1001];
-
-void DFS(int start)
-{
-    for (auto now : edges[start])
-    {
-        if (dfsCheck[now]) continue;
-
-        dfsCheck[now] = true;
-        cout << now << ' ';
-        DFS(now);
-    }
-}
+bool visited[101][101];
+int dist[101][101];
 
 int main()
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
+    int N{}, M{}, answer{};
+    string str;
+    vector<int> DR{ 1, 0, -1, 0 }; 
+    vector<int> DC{ 0, -1, 0, 1 };
+
+    cin >> N >> M;
+
+    vector<vector<int>> miro(N+1, vector<int>(M+1));
+   
     
-    int N{}, M{}, R{};
-
-    cin >> N >> M >> R;
-
-    for (int i = 0; i < M; i++)
+    cin.ignore();
+    for (int i = 0; i < N; i++)
     {
-        int vertex{}, edge{};
-        cin >> vertex >> edge;
-        edges[vertex].push_back(edge);
-        edges[edge].push_back(vertex);
+        getline(cin, str);
+        for (int j = 0; j < M; j++)
+        {
+            if (str[j] == '1')
+            {
+                miro[i+1][j+1] = 1;
+            }
+        }
+        str.clear();
     }
 
-    for (int i = 1; i <= N; i++)
-    {
-        sort(edges[i].begin(), edges[i].end());
-    }
+    queue<pair<int,int>> queue;
+    queue.push(make_pair(1,1));
+    answer++;
+    dist[1][1] = 1;
 
-    dfsCheck[R] = true;
-    cout << R << ' ';
-    DFS(R);
-    
-    queue<int> queue;
-    queue.push(R);
-
-    cout << '\n';
     while (!queue.empty())
     {
-        int current_vertex = queue.front();
+        int current_row = queue.front().first;
+        int current_col = queue.front().second;
         queue.pop();
 
-        if (bfsCheck[current_vertex]) continue;    
-        bfsCheck[current_vertex] = true;
-        cout << current_vertex << ' ';
-        for (auto now : edges[current_vertex])
+        for (int i = 0; i < 4; i++)
         {
-            if(!bfsCheck[now])
-            queue.push(now);
+            int dr = current_row + DR[i];
+            int dc = current_col + DC[i];
+
+            if (dr < 1 || dr > N || dc <1 || dc > M) continue;
+
+
+            if (!visited[dr][dc] && miro[dr][dc])
+            { 
+                dist[dr][dc] = dist[current_row][current_col] + 1;
+                visited[dr][dc] = true;
+                queue.push(make_pair(dr, dc));
+               
+            }
         }
     }
-     
 
+    cout << dist[N][M];
 }
 
 
