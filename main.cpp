@@ -1,58 +1,42 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <memory>
+#include <utility>
 
 using namespace std;
-
-using int_vector = vector<int>;
-
-shared_ptr<int_vector> DPsuger(const vector<int>& con, int sum)
-{
-    vector<shared_ptr<int_vector>> sums(sum+1, nullptr);
-    sums[0] = make_shared<vector<int>>(0);
-    for (int i = 0; i <= sum; i++)
-    {
-        if (sums[i] != nullptr)
-        {
-            for (auto e : con)
-            {
-                if (i + e <= sum)
-                {
-                    if (sums[i + e] == nullptr || sums[i + e]->size() - 1 > sums[i]->size())
-                    {
-                        sums[i + e] = make_shared<vector<int>>(*sums[i]);
-                        sums[i + e]->push_back(e);
-                    }
-                }
-            }
-        }
-    }
-
-        return sums[sum];
-}
 
 int main()
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    int k{};
-
-    cin >> k;
-
-    vector<int> bonji{ 3,5 };
+    int N{};
+    long long count{1}, end{};
+    cin >> N;
     
-    auto answer = DPsuger(bonji, k);
+    vector<pair<long long, long long>> meeting(N);
 
-    if (answer == nullptr)
+    for (int i = 0; i < N; i++)
     {
-        cout << -1;
+        cin >> meeting[i].second >> meeting[i].first;
     }
-    else
+
+    sort(meeting.begin(), meeting.end());
+    
+    end = meeting[0].first;
+
+    for (int i = 1; i < N; i++)
     {
-        cout << answer->size();
+        if (meeting[i].second >= end)
+        {
+            end = meeting[i].first;
+            count++;
+        }
     }
+    
+
+    cout << count;
+
 }
 
 
