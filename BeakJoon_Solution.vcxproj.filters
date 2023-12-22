@@ -62,5 +62,11 @@
     <ClInclude Include="그래프 순회.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="merge sort.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="재귀.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

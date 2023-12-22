@@ -1,72 +1,58 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <queue>
-#include <string>
+#include <memory>
 
 using namespace std;
 
-bool visited[101][101];
-int dist[101][101];
+using int_vector = vector<int>;
+
+shared_ptr<int_vector> DPsuger(const vector<int>& con, int sum)
+{
+    vector<shared_ptr<int_vector>> sums(sum+1, nullptr);
+    sums[0] = make_shared<vector<int>>(0);
+    for (int i = 0; i <= sum; i++)
+    {
+        if (sums[i] != nullptr)
+        {
+            for (auto e : con)
+            {
+                if (i + e <= sum)
+                {
+                    if (sums[i + e] == nullptr || sums[i + e]->size() - 1 > sums[i]->size())
+                    {
+                        sums[i + e] = make_shared<vector<int>>(*sums[i]);
+                        sums[i + e]->push_back(e);
+                    }
+                }
+            }
+        }
+    }
+
+        return sums[sum];
+}
 
 int main()
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
-    int N{}, M{}, answer{};
-    string str;
-    vector<int> DR{ 1, 0, -1, 0 }; 
-    vector<int> DC{ 0, -1, 0, 1 };
 
-    cin >> N >> M;
+    int k{};
 
-    vector<vector<int>> miro(N+1, vector<int>(M+1));
-   
+    cin >> k;
+
+    vector<int> bonji{ 3,5 };
     
-    cin.ignore();
-    for (int i = 0; i < N; i++)
+    auto answer = DPsuger(bonji, k);
+
+    if (answer == nullptr)
     {
-        getline(cin, str);
-        for (int j = 0; j < M; j++)
-        {
-            if (str[j] == '1')
-            {
-                miro[i+1][j+1] = 1;
-            }
-        }
-        str.clear();
+        cout << -1;
     }
-
-    queue<pair<int,int>> queue;
-    queue.push(make_pair(1,1));
-    answer++;
-    dist[1][1] = 1;
-
-    while (!queue.empty())
+    else
     {
-        int current_row = queue.front().first;
-        int current_col = queue.front().second;
-        queue.pop();
-
-        for (int i = 0; i < 4; i++)
-        {
-            int dr = current_row + DR[i];
-            int dc = current_col + DC[i];
-
-            if (dr < 1 || dr > N || dc <1 || dc > M) continue;
-
-
-            if (!visited[dr][dc] && miro[dr][dc])
-            { 
-                dist[dr][dc] = dist[current_row][current_col] + 1;
-                visited[dr][dc] = true;
-                queue.push(make_pair(dr, dc));
-               
-            }
-        }
+        cout << answer->size();
     }
-
-    cout << dist[N][M];
 }
 
 
