@@ -133,6 +133,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="greedy.h" />
     <ClInclude Include="map reverse.h" />
     <ClInclude Include="memo.h" />
     <ClInclude Include="merge sort.h" />
