@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <utility>
+#include <map>
+#include <cmath>
 
 using namespace std;
 
@@ -10,32 +11,31 @@ int main()
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    int N{};
-    long long count{1}, end{};
+    int N{}, tmp{};
+    double sum{};
+    map<int, int> count;
+    vector<int> vector;
     cin >> N;
-    
-    vector<pair<long long, long long>> meeting(N);
 
     for (int i = 0; i < N; i++)
     {
-        cin >> meeting[i].second >> meeting[i].first;
+        cin >> tmp;
+        sum += tmp;
+        vector.push_back(tmp);
+        count[tmp]++;
     }
 
-    sort(meeting.begin(), meeting.end());
-    
-    end = meeting[0].first;
+    sort(vector.begin(), vector.end());
+    double ave = round(sum / N * 10) / 10.0;
 
-    for (int i = 1; i < N; i++)
+    cout << ave << endl << vector[N / 2] << endl;
+    int maxElement{};
+
+    for (auto e : count)
     {
-        if (meeting[i].second >= end)
-        {
-            end = meeting[i].first;
-            count++;
-        }
+        if(e.second >) // map으로 max를 구한다음 한번더 돌면서 count를 셈
     }
-    
 
-    cout << count;
 
 }
 
