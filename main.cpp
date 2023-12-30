@@ -11,7 +11,7 @@ int main()
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    int N{}, tmp{};
+    int N{}, tmp{}, num{};
     double sum{};
     map<int, int> count;
     vector<int> vector;
@@ -26,14 +26,47 @@ int main()
     }
 
     sort(vector.begin(), vector.end());
-    double ave = round(sum / N * 10) / 10.0;
+    double ave = round(sum / N);
+    if (ave == 0)
+    {
+        ave == 0;
+    }
 
     cout << ave << endl << vector[N / 2] << endl;
-    int maxElement{};
+
+    int maxElement{}, greatFreq{};
 
     for (auto e : count)
     {
-        if(e.second >) // map으로 max를 구한다음 한번더 돌면서 count를 셈
+        if (e.second > maxElement)
+        {
+            maxElement = e.second;
+        }
+    }
+
+    for (auto e : count)
+    {
+        if (e.second == maxElement)
+        {
+            num++;
+            greatFreq = e.first;
+        }
+
+        if (num == 2)
+        {
+            break;
+        }
+    }
+
+    cout << greatFreq << endl;
+
+    if (vector[0] >= 0)
+    {
+        cout << vector[N - 1] - vector[0];
+    }
+    else
+    {
+        cout << vector[N - 1] + abs(vector[0]);
     }
 
 
