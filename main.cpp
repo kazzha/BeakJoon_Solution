@@ -2,7 +2,6 @@
 #include <vector>
 #include <algorithm>
 #include <map>
-#include <cmath>
 
 using namespace std;
 
@@ -11,7 +10,31 @@ int main()
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     
+    int N{}, M{}, tmp{}, min{}, count{};
+    cin >> N >> M;
+    vector<int> card(N);
+    cin >> card[0];
+    min = card[0];
+    for (int i = 1; i < N; i++)
+    {
+        cin >> tmp;
+        card[i] = tmp;
+        if (min > tmp)
+        {
+            min = tmp;
+        }
+    }
+    min++;
+    do {
+        count = 0;
+        min--;
+        for (auto e : card)
+        {
+            count += e / min;
+        }
+    } while (count < M);
 
+    cout << min;
 }
 
 
