@@ -148,6 +148,7 @@
     </ClInclude>
     <ClInclude Include="스택_짝맞추기.h" />
     <ClInclude Include="스택으로 순서 꺼내기.h" />
+    <ClInclude Include="이분탐색.h" />
     <ClInclude Include="재귀.h" />
     <ClInclude Include="좌표압축.h" />
     <ClInclude Include="카운팅 정렬.h">

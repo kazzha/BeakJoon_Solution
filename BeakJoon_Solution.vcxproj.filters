@@ -71,5 +71,8 @@
     <ClInclude Include="greedy.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="이분탐색.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
