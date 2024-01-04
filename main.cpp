@@ -1,87 +1,40 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <unordered_map>
-#include <string>
 
 using namespace std;
 
-unordered_map<string, int> memo;
-
-int Function(int a, int b, int c)
+int MaxSum(const vector<int>& num)
 {
-    if (a <= 0 || b <= 0 || c <= 0) { return 1; }
+    int Current_max{num[0]};
+    int answer{num[0]};
 
-    else if (a > 20 || b > 20 || c > 20) {
-        if (memo.find("20,20,20") == memo.end()) { memo["20,20,20"] = Function(20, 20, 20); }
-        return memo["20,20,20"];
-    }
-    else if (a < b && b < c)
+    for (int i=1; i<num.size(); i++)
     {
-        string key1 = to_string(a) + "," + to_string(b) + "," + to_string(c - 1);
-        string key2 = to_string(a) + "," + to_string(b - 1) + "," + to_string(c - 1);
-        string key3 = to_string(a) + "," + to_string(b - 1) + "," + to_string(c);
-
-        if (memo.find(key1) == memo.end())
-        {
-            memo[key1] = Function(a, b, c - 1);
-        }
-        if (memo.find(key2) == memo.end())
-        {
-            memo[key2] = Function(a, b-1, c - 1);
-        }
-        if (memo.find(key3) == memo.end())
-        {
-            memo[key3] = Function(a, b-1, c);
-        }
-        
-        return memo[key1] + memo[key2] - memo[key3];
+        Current_max = max(num[i], Current_max + num[i]);
+        answer = max(Current_max, answer);
     }
-    else
-    {
-        string key1 = to_string(a-1) + "," + to_string(b) + "," + to_string(c);
-        string key2 = to_string(a-1) + "," + to_string(b - 1) + "," + to_string(c);
-        string key3 = to_string(a-1) + "," + to_string(b) + "," + to_string(c-1);
-        string key4 = to_string(a - 1) + "," + to_string(b-1) + "," + to_string(c - 1);
 
-        if (memo.find(key1) == memo.end())
-        {
-            memo[key1] = Function(a-1, b, c);
-        }
-        if (memo.find(key2) == memo.end())
-        {
-            memo[key2] = Function(a-1, b - 1, c);
-        }
-        if (memo.find(key3) == memo.end())
-        {
-            memo[key3] = Function(a-1, b, c-1);
-        }
-        if (memo.find(key4) == memo.end())
-        {
-            memo[key4] = Function(a-1, b - 1, c-1);
-        }
-
-        return memo[key1] + memo[key2] + memo[key3] - memo[key4];
-    }
+    return answer;
 }
+
 
 int main()
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
-   
-    int a{}, b{}, c{};
+    
+    int N{};
+    cin >> N;
+    vector<int> input(N);
 
-    while (true)
+    for (int i=0; i<N; i++)
     {
-        cin >> a >> b >> c;
-        if (a == -1 && b == -1 && c == -1)
-        {
-            return 0;
-        }
-        cout << "w(" << a << ", " << b << ", " << c << ") = " << Function(a, b, c) << '\n';
-        
+        cin >> input[i];
     }
+
+    cout << MaxSum(input);
+    
 }
 
 
