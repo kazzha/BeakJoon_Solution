@@ -85,3 +85,63 @@ int main()
 
     }
 }
+
+// 1149¹ø
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int N{}, index{};
+
+    cin >> N;
+
+    vector<int> cost(3);
+    vector<vector<int>> house(N + 1, vector<int>(3));
+
+    for (int i = 1; i <= N; i++)
+    {
+        cin >> cost[0] >> cost[1] >> cost[2];
+
+        house[i][0] = min(house[i - 1][1], house[i - 1][2]) + cost[0];
+        house[i][1] = min(house[i - 1][0], house[i - 1][2]) + cost[1];
+        house[i][2] = min(house[i - 1][0], house[i - 1][1]) + cost[2];
+    }
+
+    cout << *min_element(house[N].begin(), house[N].end());
+
+
+}
+
+
+// 1932¹ø
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int N{}, tmp{};
+
+    cin >> N;
+
+    vector<vector<int>> triangle(N + 1, vector<int>(N + 1));
+    vector<vector<int>> save(N + 1, vector<int>(N + 1));
+
+    for (int i = 1; i <= N; i++)
+    {
+        for (int j = 1; j <= i; j++)
+        {
+            cin >> triangle[i][j];
+        }
+    }
+
+    for (int i = 1; i <= N; i++)
+    {
+        for (int j = 1; j <= i; j++)
+        {
+            save[i][j] = max(save[i - 1][j - 1], save[i - 1][j]) + triangle[i][j];
+        }
+    }
+
+    cout << *max_element(save[N].begin(), save[N].end());
+}

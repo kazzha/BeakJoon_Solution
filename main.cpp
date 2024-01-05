@@ -4,37 +4,35 @@
 
 using namespace std;
 
-int MaxSum(const vector<int>& num)
-{
-    int Current_max{num[0]};
-    int answer{num[0]};
-
-    for (int i=1; i<num.size(); i++)
-    {
-        Current_max = max(num[i], Current_max + num[i]);
-        answer = max(Current_max, answer);
-    }
-
-    return answer;
-}
-
-
 int main()
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     
-    int N{};
-    cin >> N;
-    vector<int> input(N);
+    int N{}, tmp{};
 
-    for (int i=0; i<N; i++)
+    cin >> N;
+
+    vector<vector<int>> triangle(N + 1, vector<int>(N + 1));
+    vector<vector<int>> save(N + 1, vector<int>(N + 1));
+   
+    for (int i = 1; i <= N; i++)
     {
-        cin >> input[i];
+        for (int j = 1; j <= i; j++)
+        {
+            cin >> triangle[i][j];
+        }
     }
 
-    cout << MaxSum(input);
-    
+    for (int i = 1; i <= N; i++)
+    {
+        for (int j = 1; j <= i; j++)
+        {
+            save[i][j] = max(save[i - 1][j - 1], save[i - 1][j]) + triangle[i][j];
+        }
+    }
+
+    cout << *max_element(save[N].begin(), save[N].end());
 }
 
 
