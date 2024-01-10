@@ -8,31 +8,30 @@ int main()
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
-    
-    int N{}, tmp{};
 
+    int N{};
     cin >> N;
 
-    vector<vector<int>> triangle(N + 1, vector<int>(N + 1));
-    vector<vector<int>> save(N + 1, vector<int>(N + 1));
-   
-    for (int i = 1; i <= N; i++)
-    {
-        for (int j = 1; j <= i; j++)
-        {
-            cin >> triangle[i][j];
-        }
-    }
+    vector<int> table(N+1);
 
-    for (int i = 1; i <= N; i++)
-    {
-        for (int j = 1; j <= i; j++)
-        {
-            save[i][j] = max(save[i - 1][j - 1], save[i - 1][j]) + triangle[i][j];
-        }
+    table[1] = 0;
+    if (N > 1) {
+        table[2] = 1;
+            }
+     if (N > 2) {
+        table[3] = 1;
     }
+    
 
-    cout << *max_element(save[N].begin(), save[N].end());
+    if (N > 3) {
+    for (int i = 4; i <= N; i++)
+    {
+        table[i] = table[i - 1] + 1;
+        if (i % 3 == 0) table[i] = min(table[i], table[i / 3]+1);
+        if (i % 2 == 0) table[i] = min(table[i], table[i / 2]+1);
+    }
+    }
+    cout << table[N];
 }
 
 

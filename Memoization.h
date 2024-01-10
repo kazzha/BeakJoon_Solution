@@ -145,3 +145,35 @@ int main()
 
     cout << *max_element(save[N].begin(), save[N].end());
 }
+
+// 2579번. 계단 오르기
+int main()
+{
+
+    int ans[301] = { 0, };
+
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int N{};
+
+    cin >> N;
+    vector<int> stair(N + 1);
+
+    for (int i = 1; i <= N; i++)
+    {
+        cin >> stair[i];
+    }
+
+    ans[1] = stair[1];
+    ans[2] = stair[1] + stair[2];
+    ans[3] = max(stair[1], stair[2]) + stair[3];
+
+    for (int i = 4; i <= N; i++)
+    {
+        ans[i] = max(ans[i - 3] + stair[i - 1], ans[i - 2]) + stair[i];
+    }
+
+    cout << ans[N];
+
+}
