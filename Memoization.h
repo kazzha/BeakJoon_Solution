@@ -177,3 +177,75 @@ int main()
     cout << ans[N];
 
 }
+
+// 11053번 가장 긴 증가하는 부분 수열
+
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int N{};
+    cin >> N;
+
+    vector<int> table(N);
+    vector<int> answer(N);
+
+    for (int i = 0; i < N; i++)
+    {
+        cin >> table[i];
+    }
+
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            if (table[i] > table[j])
+            {
+                answer[i] = max(answer[i], answer[j]);
+            }
+        }
+        answer[i]++;
+    }
+
+    cout << *max_element(answer.begin(), answer.end());
+
+}
+
+// 2156번. 포도주 시식
+
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int N{}, count{ 2 };
+    cin >> N;
+
+    vector<int> table(N + 1);
+    vector<int> answer(N + 1);
+
+    for (int i = 1; i <= N; i++)
+    {
+        cin >> table[i];
+    }
+
+    answer[1] = table[1];
+
+    if (N > 1)
+    {
+        answer[2] = table[1] + table[2];
+    }
+
+    if (N > 2)
+    {
+        for (int i = 3; i <= N; i++)
+        {
+            answer[i] = max(answer[i - 2] + table[i], answer[i - 3] + table[i - 1] + table[i]);
+            answer[i] = max(answer[i], answer[i - 1]);
+        }
+    }
+
+    cout << answer[N];
+
+}

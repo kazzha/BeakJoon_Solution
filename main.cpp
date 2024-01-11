@@ -9,29 +9,35 @@ int main()
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    int N{};
+    int N{}, count{2};
     cin >> N;
 
     vector<int> table(N+1);
+    vector<int> answer(N+1);
 
-    table[1] = 0;
-    if (N > 1) {
-        table[2] = 1;
-            }
-     if (N > 2) {
-        table[3] = 1;
+    for (int i = 1; i <= N; i++)
+    {
+        cin >> table[i];
+    }
+
+    answer[1] = table[1];
+
+    if (N > 1)
+    {
+        answer[2] = table[1] + table[2];
+    }
+
+    if (N > 2)
+    {
+        for (int i = 3; i <= N; i++)
+        {
+            answer[i] = max(answer[i - 2] + table[i], answer[i - 3] + table[i - 1] + table[i]);
+            answer[i] = max(answer[i], answer[i - 1]);
+        }
     }
     
+    cout << answer[N];
 
-    if (N > 3) {
-    for (int i = 4; i <= N; i++)
-    {
-        table[i] = table[i - 1] + 1;
-        if (i % 3 == 0) table[i] = min(table[i], table[i / 3]+1);
-        if (i % 2 == 0) table[i] = min(table[i], table[i / 2]+1);
-    }
-    }
-    cout << table[N];
 }
 
 
