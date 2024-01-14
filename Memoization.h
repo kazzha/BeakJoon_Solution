@@ -249,3 +249,179 @@ int main()
     cout << answer[N];
 
 }
+
+// 11053번 가장 긴 증가하는 부분 수열
+
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int N{};
+    cin >> N;
+
+    vector<vector<int>> DP(N + 1, vector<int>(10));
+
+    for (int i = 1; i < 10; i++)
+    {
+        DP[1][i] = 1;
+    }
+
+    if (N > 1)
+    {
+        for (int i = 2; i <= N; i++)
+        {
+            for (int j = 0; j <= 9; j++)
+            {
+                if (j == 0)
+                {
+                    DP[i][j] = DP[i - 1][j + 1];
+                }
+                else if (j == 9)
+                {
+                    DP[i][j] = DP[i - 1][j - 1];
+                }
+                else
+                {
+                    DP[i][j] = DP[i - 1][j + 1] + DP[i - 1][j - 1];
+                }
+
+                DP[i][j] %= 1000000000;
+            }
+        }
+    }
+
+    long long ans{};
+
+    for (int i = 0; i < 10; i++)
+    {
+        ans += DP[N][i];
+    }
+
+    cout << ans % 1000000000;
+}
+
+// 11054번 가장 긴 바이토닉 부분 수열
+
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int N{};
+    cin >> N;
+
+    vector<int> table(N + 1, 1);
+    vector<int> DP_P(N + 1, 1);
+    vector<int> DP_M(N + 1, 1);
+
+    for (int i = 1; i <= N; i++)
+    {
+        cin >> table[i];
+    }
+
+    for (int i = 2; i <= N; i++)
+    {
+        for (int j = i - 1; j > 0; j--)
+        {
+            if (table[i] > table[j])
+            {
+                DP_P[i] = max(DP_P[i], DP_P[j] + 1);
+            }
+        }
+    }
+
+    for (int i = N - 1; i > 0; i--)
+    {
+        for (int j = i + 1; j <= N; j++)
+        {
+            if (table[i] > table[j]) {
+                DP_M[i] = max(DP_M[i], DP_M[j] + 1);
+            }
+        }
+    }
+
+    int ans{};
+
+    for (int i = 1; i <= N; i++)
+    {
+        ans = max(ans, DP_M[i] + DP_P[i] - 1);
+    }
+
+    cout << ans;
+}
+
+// 2565번 전깃줄
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int N{};
+    cin >> N;
+
+    vector<pair<int, int>> table(N + 1);
+    vector<int> DP(N + 1, 1);
+
+    for (int i = 1; i <= N; i++)
+    {
+        cin >> table[i].first >> table[i].second;
+    }
+
+    sort(table.begin(), table.end());
+
+    for (int i = 2; i <= N; i++)
+    {
+        for (int j = i - 1; j > 0; j--)
+        {
+            if (table[i].first >= table[j].first && table[i].second >= table[j].second)
+            {
+                DP[i] = max(DP[i], DP[j] + 1);
+            }
+
+        }
+    }
+
+
+    int ans{};
+
+    for (int i = 1; i <= N; i++)
+    {
+        ans = max(ans, DP[i]);
+    }
+
+    cout << N - ans;
+
+
+}
+
+// 9251번 LCS
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    string str1, str2;
+
+    cin >> str1 >> str2;
+
+    vector<vector<int>> DP(str1.size() + 1, vector<int>(str2.size() + 1));
+
+    for (int i = 1; i <= str1.size(); i++)
+    {
+        for (int j = 1; j <= str2.size(); j++)
+        {
+            if (str1[i - 1] == str2[j - 1])
+            {
+                DP[i][j] = DP[i - 1][j - 1] + 1;
+            }
+            else
+            {
+                DP[i][j] = max(DP[i - 1][j], DP[i][j - 1]);
+            }
+        }
+    }
+
+    cout << DP[str1.size()][str2.size()];
+
+}
