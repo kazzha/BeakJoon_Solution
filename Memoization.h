@@ -425,3 +425,39 @@ int main()
     cout << DP[str1.size()][str2.size()];
 
 }
+
+// 12865 Æò¹üÇÑ ¹è³¶(³À»ö)
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    int N{}, wight{};
+
+    cin >> N >> wight;
+
+    vector<pair<int, int>> back(N);
+    vector<vector<int>> table(N + 1, vector<int>(wight + 1));
+
+    for (int i = 0; i < N; i++)
+    {
+        cin >> back[i].first >> back[i].second;
+    }
+
+    for (int i = 1; i <= N; i++)
+    {
+        for (int j = 1; j <= wight; j++)
+        {
+            if (j >= back[i - 1].first)
+            {
+                table[i][j] = max(back[i - 1].second + table[i - 1][j - back[i - 1].first], table[i - 1][j]);
+            }
+            else
+            {
+                table[i][j] = table[i - 1][j];
+            }
+        }
+    }
+
+    cout << table[N][wight];
+}

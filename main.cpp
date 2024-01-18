@@ -4,34 +4,68 @@
 
 using namespace std;
 
+int arr[128][128]{};
+int White{}, Blue{};
+
+void DC(int index, int start, int end)
+{
+    bool flag = false;
+    int prev{arr[start][end]};
+    for (int i = start; i < start+index; i++)
+    {
+        for (int j = end; j < end+index; j++)
+        {
+            if (prev != arr[i][j])
+            {
+                flag = true;
+                break;
+            }
+            else { prev = arr[i][j]; }
+        }
+    }
+
+    index /= 2;
+
+    if (flag)
+    {
+        DC(index, start, end);
+        DC(index, start + index, end);
+        DC(index, start, end + index);
+        DC(index, start + index, end + index);
+    }
+    else
+    {
+        if (prev == 0)
+        {
+            White++;
+        }
+        else
+        {
+            Blue++;
+        }
+    }
+}
+
 int main()
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    string str1, str2;
+    int N{}, tmp{};
 
-    cin >> str1 >> str2;
+    cin >> N;
 
-    vector<vector<int>> DP(str1.size() + 1, vector<int>(str2.size()+1));
-
-    for (int i = 1; i <= str1.size(); i++)
+    for (int i = 0; i < N; i++)
     {
-        for (int j = 1; j <= str2.size(); j++)
+        for (int j = 0; j < N; j++)
         {
-            if (str1[i - 1] == str2[j - 1])
-            {
-                DP[i][j] = DP[i - 1][j - 1] + 1;
-            }
-            else
-            {
-                DP[i][j] = max(DP[i - 1][j], DP[i][j - 1]);
-            }
+            cin >> arr[i][j];
         }
     }
 
-    cout << DP[str1.size()][str2.size()];
-    
+    DC(N, 0, 0);
+
+    cout << White << '\n' << Blue;
 }
 
 
