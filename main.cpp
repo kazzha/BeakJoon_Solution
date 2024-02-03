@@ -4,68 +4,30 @@
 
 using namespace std;
 
-int arr[128][128]{};
-int White{}, Blue{};
-
-void DC(int index, int start, int end)
-{
-    bool flag = false;
-    int prev{arr[start][end]};
-    for (int i = start; i < start+index; i++)
-    {
-        for (int j = end; j < end+index; j++)
-        {
-            if (prev != arr[i][j])
-            {
-                flag = true;
-                break;
-            }
-            else { prev = arr[i][j]; }
-        }
-    }
-
-    index /= 2;
-
-    if (flag)
-    {
-        DC(index, start, end);
-        DC(index, start + index, end);
-        DC(index, start, end + index);
-        DC(index, start + index, end + index);
-    }
-    else
-    {
-        if (prev == 0)
-        {
-            White++;
-        }
-        else
-        {
-            Blue++;
-        }
-    }
-}
 
 int main()
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    int N{}, tmp{};
+    int N{}, M{}, K{};
 
-    cin >> N;
+    cin >> N >> M >> K;
 
-    for (int i = 0; i < N; i++)
+    vector<vector<long long>> sumB(N+1, vector<long long>(M+1));
+    vector<vector<long long>> sumW(N+1, vector<long long>(M+1));
+
+    for (int i = 1; i <= N; i++)
     {
-        for (int j = 0; j < N; j++)
+        for (int j = 1; j <= M; j++)
         {
-            cin >> arr[i][j];
+            if ((i + j) % 2 == 0)
+            {
+                sumB[i][j] = 1;
+            }
         }
     }
-
-    DC(N, 0, 0);
-
-    cout << White << '\n' << Blue;
+    
 }
 
 
