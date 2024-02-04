@@ -1,9 +1,30 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <unordered_map>
 
 using namespace std;
 
+unordered_map<string, int> dictionary;
+
+bool compairVec(const pair<string, int>& A, const pair<string, int>& B)
+{
+    if (A.second != B.second)
+    {
+        return A.second > B.second;
+    }
+    else
+    {
+        if (A.first.size() != B.first.size())
+        {
+            return A.first.size() > B.first.size();
+        }
+        else
+        {
+            return A.first < B.first;
+        }
+    }
+}
 
 int main()
 {
@@ -12,22 +33,28 @@ int main()
 
     int N{}, M{}, K{};
 
-    cin >> N >> M >> K;
+    cin >> N >> M;
 
-    vector<vector<long long>> sumB(N+1, vector<long long>(M+1));
-    vector<vector<long long>> sumW(N+1, vector<long long>(M+1));
+    string s;
 
-    for (int i = 1; i <= N; i++)
+    for (int i = 0; i < N; i++)
     {
-        for (int j = 1; j <= M; j++)
+        cin >> s;
+        if (s.size() >= M)
         {
-            if ((i + j) % 2 == 0)
-            {
-                sumB[i][j] = 1;
-            }
+            dictionary[s]++;
         }
     }
-    
+
+    vector< pair<string, int>> Vec(dictionary.begin(), dictionary.end());
+
+    sort(Vec.begin(), Vec.end(), compairVec);
+
+    for (int i = 0; i < Vec.size(); i++)
+    {
+        cout << Vec[i].first << '\n';
+    }
+
 }
 
 
