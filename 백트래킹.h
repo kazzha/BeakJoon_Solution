@@ -1,9 +1,69 @@
+#pragma once
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <set>
 
 using namespace std;
+
+// 15650¹ø
+
+int N{}, M{};
+int arr[9];
+bool visited[9];
+
+void DFS(int cnt)
+{
+    if (cnt == M)
+    {
+        for (int i = 0; i < M; i++)
+        {
+            cout << arr[i] << ' ';
+        }
+        cout << '\n';
+        return;
+    }
+
+    for (int i = 1; i <= N; i++)
+    {
+        if (visited[i] == false)
+        {
+            if (cnt == 0)
+            {
+                visited[i] = true;
+                arr[cnt] = i;
+                DFS(cnt + 1);
+                visited[i] = false;
+            }
+            else
+            {
+                if (arr[cnt - 1] < i)
+                {
+                    visited[i] = true;
+                    arr[cnt] = i;
+                    DFS(cnt + 1);
+                    visited[i] = false;
+                }
+                else {}
+            }
+        }
+    }
+}
+
+int main()
+{
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
+    cin >> N >> M;
+
+    DFS(0);
+
+}
+
+// 14888¹ø
+
+#include <set>
 
 int N{}, tmp{};
 int arr[12];
@@ -34,7 +94,7 @@ void DFS(int cnt)
             switch (i)
             {
             case 0:
-                tmp += arr[cnt+1];
+                tmp += arr[cnt + 1];
                 break;
             case 1:
                 tmp -= arr[cnt + 1];
@@ -45,7 +105,7 @@ void DFS(int cnt)
             case 3:
                 if (tmp < 0) tmp = (-1 * ((-1 * tmp) / arr[cnt + 1]));
                 else tmp /= arr[cnt + 1];
-                    break;
+                break;
             default:
                 break;
             }
@@ -74,49 +134,8 @@ int main()
         cin >> Operator[i];
         visited[i] = Operator[i];
     }
-    
+
     DFS(0);
 
     cout << *(--ans.end()) << '\n' << *(ans.begin());
 }
-
-
-
-
-/*
-int main()
-{
-    int N{}, M{};
-
-    cin >> N;
-
-    vector<int> sangun(N);
-    for (int i = 0; i < N; i++)
-    {
-        cin >> sangun[i];
-    }
-
-    cin >> M;
-    vector<int> num(M);
-    vector<bool> checking(M);
-
-    for (int j = 0; j < M; j++)
-    {
-        cin >> num[j];
-        for (int k = 0; k < N; k++)
-        {
-            if (num[j] == sangun[k])
-            {
-                checking[j] = true;
-            }
-        }
-    }
-
-    for (int i = 0; i < M; i++)
-    {
-        cout << checking[i] << " ";
-    }
-
-
-}
-*/
